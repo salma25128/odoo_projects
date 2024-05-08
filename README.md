@@ -1,2 +1,1 @@
-# Real-Estate
-odoo_app
+odoo_projects 
