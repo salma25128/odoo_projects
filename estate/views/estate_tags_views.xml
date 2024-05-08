@@ -1,0 +1,49 @@
+<odoo>
+<record id="tags_tree" model="ir.ui.view">
+    <field name="name"> tags tree</field>
+    <field name="model">estate.tags</field>
+
+    <field name="arch" type="xml">
+        <tree>
+
+             <field name="name"/>
+
+             <field name="estate_property_ids" widget="many2many_tags"/>
+
+        </tree>
+    </field>
+</record>
+
+    <record id="tags_form" model="ir.ui.view">
+    <field name="name"> tags form</field>
+    <field name="model">estate.tags</field>
+
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+
+             <field name="name"/>
+
+             <field name="estate_property_ids" widget="many2many_tags"/>
+                </group>
+      </sheet>
+        </form>
+    </field>
+</record>
+
+   <record id="tags_action" model="ir.actions.act_window">
+        <field name="name">Property Tags </field>
+        <field name="res_model">estate.tags</field>
+
+    </record>
+
+
+    <menuitem
+    id="tags_menu"
+    name="Tags"
+    parent="configurations_menu"
+    action="tags_action"
+
+   />
+</odoo>
