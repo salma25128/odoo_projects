@@ -1,9 +1,0 @@
-id,name,model_id/id,perm_read,perm_write,perm_create,perm_unlink
-access_estate_property,access_estate_property,model_estate_property,1,1,1,1
-access_estate_types,access_estate_types,model_estate_types,1,1,1,1
-access_estate_tags,access_estate_tags,model_estate_tags,1,1,1,1
-access_estate_offers,access_estate_offers,model_estate_offers,1,1,1,1
-
-
-
-
