@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <record id="collaborate_tree" model="ir.ui.view">
+       <field name="name">collaborators tree</field>
+        <field name="model">collaborators</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                 <field name="user_id"/>
+                <field name="status"/>
+
+               <button name="action_active" type="object" string="active" class="btn-success" invisible="status=='active'" />
+                <button name="action_inactive" type="object"  string="inactive" class="btn-danger" invisible="status=='inactive'"/>
+                 <field name="status" widget="statusbar" invisible="1" string="change status"/>
+
+            </tree>
+        </field>
+    </record>
+
+ <record id="collaborators_action" model="ir.actions.act_window">
+        <field name="name">collaborators menu</field>
+        <field name="res_model">collaborators</field>
+    </record>
+    <menuitem
+    id="collaborators_menu"
+    name="Collaborators"
+    parent="project.menu_main_pm"
+    action ="collaborators_action"
+    sequence="3"
+   />
+
+</odoo>

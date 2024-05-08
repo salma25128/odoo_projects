@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+    <record id="view_task_form2_inherit" model="ir.ui.view">
+    <field name="name">edit task</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field name="arch" type="xml">
+    <xpath expr="//field[@name='name']" position="after">
+       <div class="oe-title">
+           <h1>
+            <field name="ref"/>
+           </h1>
+        </div>
+      </xpath>
+
+            <xpath expr="//field[@name='tag_ids']" position="after">
+
+                <field name="developer_id" string='Developer' />
+                <field name="functional_consultant_id" string='Functional Consultant'/>
+                <field name="development_status" string="Development Status"/>
+                <field name="module" string='Module'/>
+                 <field name="branch" string='Branch'/>
+                 <field name="release_notes" string='Release Notes'/>
+            </xpath>
+                 <xpath expr="//field[@name='partner_id']" position="after">
+<!--                <field name="priority" string='Priority'/>-->
+                <field name="internal_deadline" string='Internal Deadline'/>
+                 <field name="allocated_time_research" string='Research and Solution Design Allocated Time'/>
+                  <field name="allocated_time_development" string='Development Allocated Time'/>
+                 <field name="allocated_time_testing" string='Testing Allocated Time'/>
+                 <field name="total_allocated_time" string='Total Allocated Time'/>
+            </xpath>
+
+            </field>
+        </record>
+
+ <record id="view_task_list_inherit" model="ir.ui.view">
+    <field name="name">edit list task</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.open_view_my_tasks_list_view"/>
+    <field name="arch" type="xml">
+       <xpath expr="//field[@name='name']" position="before">
+
+            <field name="ref"/>
+
+
+      </xpath>
+    </field>
+   </record>
+
+    </data>
+</odoo>

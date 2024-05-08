@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+<record id="view_project_inherit" model="ir.ui.view">
+    <field name="name">edit project</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='tag_ids']" position="after" >
+                <field name="odoo_version" string='odoo version' />
+                <field name="odoo_type" string='odoo type'/>
+        </xpath>
+        <xpath expr="//field[@name='date_start']" position="after" >
+                <field name="Github_account"/>
+                <field name="github_repo_url" string="github repo url"/>
+                <field name="hosting"/>
+                <field name="hosting_description"/>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+    <page string="Collaborators" >
+        <field name="collaborators_ids"/>
+    </page>
+  </xpath>
+    </field>
+</record>
+
+
+    </data>
+</odoo>
