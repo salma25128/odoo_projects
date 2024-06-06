@@ -2,7 +2,7 @@
     <data>
         <record id="property_sequence" model="ir.sequence">
             <field name="name">property sequence</field>
-            <field name="code">property_seq</field>
+            <field name="code">estate.property.sequence</field>
             <field name="prefix">PRO</field>
             <field name="padding">5</field>
 

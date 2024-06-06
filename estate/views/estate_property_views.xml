@@ -9,7 +9,7 @@
 
     <field name="arch" type="xml">
         <tree class="head">
-             <field name="sequence" widget="handle"/>
+
              <field name="ref"/>
              <field name="name"/>
              <field name="expected_price"/>

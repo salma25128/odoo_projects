@@ -6,8 +6,7 @@ class EstateProperty(models.Model):
     _name = 'estate.property'
     _description = 'estate odoo app'
     # _log_access = False         #prevent log access login except id / automated fields
-    _order = "sequence"
-    sequence = fields.Integer('Sequence', default=1, help="Used to order stages. Lower is better.")
+  
     ref = fields.Char(default='new', readonly=1)
     name = fields.Char(required=1)
 
@@ -103,11 +102,11 @@ class EstateProperty(models.Model):
 
             }
 
+    
+# reference
     @api.model
-    def create(self,vals):
-        res = super(EstateProperty, self).create(vals)
-        if res.ref=='new':
-            res.ref= self.env=['ir.sequence']
-        return res
-
-
+    def create(self, vals):
+            if vals.get('task_number', 'new') == 'new':
+                vals['ref'] = self.env['ir.sequence'].next_by_code('estate.property.sequence') or 'new'
+                res = super(EstateProperty, self).create(vals)
+                return res
