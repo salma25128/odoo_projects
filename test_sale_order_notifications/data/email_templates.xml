@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Email Template for Sale Order Invoiced -->
+        <record id="email_template_invoiced_sale_order" model="mail.template">
+            <field name="name">Sale Order Invoiced Email</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">Sale Order ${object.name} Invoiced</field>
+            <field name="email_from">${(object.company_id.email or 'noreply@yourcompany.com')|safe}</field>
+            <field name="email_to">${object.user_id.partner_id.email|safe}</field>
+            <field name="body_html">
+                <![CDATA[
+                <p>Hello ${object.user_id.name},</p>
+                <p>The sale order <strong>${object.name}</strong> has been moved to the invoiced stage.</p>
+                <p><strong>Sale Order Details:</strong></p>
+                <ul>
+                    <li>Total Amount: ${object.amount_total}</li>
+                    <li>Invoice Status: ${dict(object._fields['invoice_status'].selection).get(object.invoice_status)}</li>
+                </ul>
+                <p>Please review the invoice at your earliest convenience.</p>
+                <p>Best regards,<br/>Your Company</p>
+                ]]>
+            </field>
+        </record>
+    </data>
+</odoo>

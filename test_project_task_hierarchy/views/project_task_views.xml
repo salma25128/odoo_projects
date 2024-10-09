@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_task_tree" model="ir.ui.view">
+            <field name="name">project.task.tree</field>
+            <field name="model">project.task</field>
+            <field name="arch" type="xml">
+        <tree string="Tasks">
+            <field name="name"/>
+            <field name="parent_id"/>
+            <field name="depth" invisible="1"/>
+            <field name="child_ids"/>
+        </tree>
+    </field>
+</record>
+
+
+
+
+<!--    <record id="view_task_tree_inherit" model="ir.ui.view">-->
+<!--        <field name="name">project.task.tree.inherit.view</field>-->
+<!--        <field name="model">project.task</field>-->
+<!--        <field name="inherit_id" ref="project.open_view_all_tasks_list_view"/>-->
+<!--        <field name="arch" type="xml">-->
+
+<!--            <xpath expr="//tree" position="attributes">-->
+<!--                <attribute name="class">oe_task_tree</attribute>-->
+<!--            </xpath>-->
+
+<!--        </field>-->
+<!--    </record>-->
+    </data>
+</odoo>
+
+
+
+
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Server Action to send an email when Sale Order is Invoiced -->
+        <record id="action_send_invoiced_email" model="ir.actions.server">
+            <field name="name">Send Email When Sale Order Invoiced</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">
+                if record.state == 'sale' and record.invoice_status == 'invoiced':
+                    env['sale.order'].send_invoiced_email(record)
+            </field>
+        </record>
+
+        <!-- Trigger the server action on write -->
+<!--        <record id="rule_send_invoiced_email" model="ir.model.data">-->
+<!--            <field name="name">Send Invoiced Email</field>-->
+<!--            <field name="model_id" ref="sale.model_sale_order"/>-->
+<!--            <field name="trigger">on_write</field>-->
+<!--            <field name="binding_model_id" ref="sale.model_sale_order"/>-->
+<!--            <field name="binding_type">action</field>-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">-->
+<!--                env['sale.order'].send_invoiced_email(record)-->
+<!--            </field>-->
+<!--        </record>-->
+    </data>
+</odoo>
