@@ -4,41 +4,38 @@ from odoo import models, fields, api
 class ProjectTask(models.Model):
         _inherit = 'project.task'
 
-        class ProjectTask(models.Model):
-            _inherit = 'project.task'
-
-            parent_id = fields.Many2one('project.task', string='Parent Task', ondelete='cascade', index=True)
-            child_ids = fields.One2many('project.task', 'parent_id', string='Sub-tasks')
-            depth = fields.Integer(string='Depth', compute='_compute_depth', store=True)
+        parent_id = fields.Many2one('project.task', string='Parent Task', ondelete='cascade', index=True)
+        child_ids = fields.One2many('project.task', 'parent_id', string='Sub-tasks')
+        depth = fields.Integer(string='Depth', compute='_compute_depth', store=True)
 # Parent_id > depth >filter
-            @api.depends('parent_id')
-            def _compute_depth(self):
-                for task in self:
-                    depth = 0
-                    parent = task.parent_id
-                    while parent:
-                        depth += 1
-                        parent = parent.parent_id
-                        task.depth = depth
+        @api.depends('parent_id')
+        def _compute_depth(self):
+            for task in self:
+                depth = 0
+                parent = task.parent_id
+                while parent:
+                    depth += 1
+                    parent = parent.parent_id
+                    task.depth = depth
 
-            @api.model
-            def get_ordered_tasks(self):
-                ordered_tasks = []
-                def add_task_and_subtasks(task, depth=0):
-                    task_data = {
-                        'id': task.id,
-                        'name': task.name,
-                        'parent_id': task.parent_id.id if task.parent_id else None,
-                        'depth': depth,
-                    }
-                    ordered_tasks.append(task_data)
-                    for sub_task in task.child_ids:
-                        add_task_and_subtasks(sub_task, depth + 1)
-                root_tasks = self.search([('parent_id', '=', False)])
-                for root_task in root_tasks:
-                    add_task_and_subtasks(root_task)
+        @api.model
+        def get_ordered_tasks(self):
+            ordered_tasks = []
+            def add_task_and_subtasks(task, depth=0):
+                task_data = {
+                    'id': task.id,
+                    'name': task.name,
+                    'parent_id': task.parent_id.id if task.parent_id else None,
+                    'depth': depth,
+                }
+                ordered_tasks.append(task_data)
+                for sub_task in task.child_ids:
+                    add_task_and_subtasks(sub_task, depth + 1)
+            root_tasks = self.search([('parent_id', '=', False)])
+            for root_task in root_tasks:
+                add_task_and_subtasks(root_task)
 
-                return ordered_tasks
+            return ordered_tasks
 
 
         # -----------------------------------------------------------------
@@ -101,17 +98,7 @@ class ProjectTask(models.Model):
         #
 
 
-    #-------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-#
+    #----------------------------------------------------------------------------------------------
 #
 #
 # class ProjectTask(models.Model):
@@ -154,13 +141,7 @@ class ProjectTask(models.Model):
 #             parent_task = self.browse(vals.get('parent_id'))
 #             vals['sequence'] = parent_task.sequence + 1
 #         return super(ProjectTask, self).write(vals)
-
-
-
-# from odoo import models, api
-#
-# class ProjectTask(models.Model):
-#     _inherit = 'project.task'
+# -------------------------------------------------------------------
 #
 #     @api.model
 #     def get_task_hierarchy(self):
